@@ -1,0 +1,2 @@
+# Keep Windows line endings for the double-click launchers, also in downloaded ZIPs.
+*.bat text eol=crlf
