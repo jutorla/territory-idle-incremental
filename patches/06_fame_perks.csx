@@ -21,7 +21,7 @@
 //             10 Battle Wisdom        +25%/lvl hero experience
 //             11 Plunder              each monster killed gives 2%/lvl of one second of wheat/wood/stone/faith income
 //             12 Phoenix              +1 hero revive per battle per lvl (max 3)
-//             13 Spoils of War        conquering a tile pays 20%/lvl of the gold price of the next tile
+//             13 Spoils of War        conquering a tile gives 0.2 Fame per level (0.2 / 0.4 / 0.6 / 0.8 / 1.0), also perk points
 //             14 Land Deeds           buying a tile refunds 10%/lvl of its gold price
 //             15 Cleave (keystone)    each kill counts as +1 extra kill per lvl toward the tile (max 2 = x3)
 //  DEVOTION   16 Long Rituals         +10 s/lvl ritual duration
@@ -171,11 +171,19 @@ importGroup.QueueFindReplace(
     "(MyRel(3, 3) + obor) > revive",
     "(MyRel(3, 3) + obor + " + F(12) + ") > revive");
 
-// ---- 13: Spoils of War. When a tile is won, the next tile's price (main.kle_cost) is partly paid in gold.
+// ---- 13: Spoils of War. Conquering a tile gives 0.2 Fame per level (0.2 / 0.4 / 0.6 / 0.8 / 1.0), which is also that many
+//      perk points. Fame (main.empire_ppp) is normally only written to the save when you sail away, so it is written to
+//      game2 right here; game2 is open at this point of the conquest code. Rounded to 2 decimals so repeated additions of
+//      0.2 cannot drift (for example 4.999999 would fail a 5-point check).
 importGroup.QueueFindReplace(
     "gml_Object_LandBattle_Other_10",
     "global.battled++;",
-    "global.battled++;\nglobal.gold += (main.kle_cost * 0.2 * " + F(13) + ");");
+    "global.battled++;\n" +
+    "if (" + F(13) + " > 0)\n" +
+    "{\n" +
+    "    main.empire_ppp = round((main.empire_ppp + (0.2 * " + F(13) + ")) * 100) / 100;\n" +
+    "    ini_write_string(\"EMP\", \"empire_ppp\", string(main.empire_ppp));\n" +
+    "}");
 
 // ======================================================================================================
 // DEVOTION

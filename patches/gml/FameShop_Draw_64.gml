@@ -16,7 +16,7 @@ for (var i = 0; i < NN; i++)
 {
     spent += global.fs_bs[i] * ((global.fs_lv[i] * (global.fs_lv[i] + 1)) / 2);
 }
-tot = main.empire_ppp;
+tot = round(main.empire_ppp * 100) / 100;
 av = tot - spent;
 
 draw_set_font(font0);

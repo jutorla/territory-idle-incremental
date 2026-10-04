@@ -12,7 +12,7 @@ if (global.qol_fame && !modal())
     {
         _fspent += global.fs_bs[_fi] * ((global.fs_lv[_fi] * (global.fs_lv[_fi] + 1)) / 2);
     }
-    var _fav = empire_ppp - _fspent;
+    var _fav = (round(empire_ppp * 100) / 100) - _fspent;
     var _fx = 25 + string_width(g("Магазин янтаря", "Amber Shop")) + 36 + 8;
     var _fcol = merge_color(c_fuchsia, c_white, 0.55);
     if (_fav > 0)

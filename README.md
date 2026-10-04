@@ -1,5 +1,9 @@
 # Territory Idle – QoL mod changelog
 
+## 1.3.1 – 2026-10-04
+
+- **Spoils of War** now gives **Fame instead of gold**: 0.2 Fame per level (0.2 / 0.4 / 0.6 / 0.8 / 1.0) for every tile you conquer in battle, which is also that many perk points. The gold payout was too strong.
+
 ## 1.3.0 – 2026-10-04
 
 - **Fame Shop rebuilt: 32 perks in 4 branches** (Industry, Conquest, Devotion, Legacy). Each branch is a "diamond": a root, two paths and a **keystone** that needs both paths. Most perks are now mechanics, and several grow with your progress (tiles, Fame, continents, rituals, ships, workers).

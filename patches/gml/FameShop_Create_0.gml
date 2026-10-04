@@ -117,10 +117,10 @@ sg[12] = "+";
 sx[12] = "";
 
 nm[13] = g("Трофеи войны", "Spoils of War");
-ds[13] = g("Захват клетки приносит 20% золотой цены#следующей клетки за уровень.", "Conquering a tile pays 20% of the#gold price of the next tile, per level.");
-vv[13] = 20;
+ds[13] = g("Захват клетки в бою даёт +0.2 славы#за уровень (и столько же очков перков).", "Conquering a tile in battle gives +0.2#Fame per level (and as many perk points).");
+vv[13] = 0.2;
 sg[13] = "+";
-sx[13] = "%";
+sx[13] = g(" славы", " Fame");
 
 nm[14] = g("Земельные акты", "Land Deeds");
 ds[14] = g("Покупка клетки возвращает 10% её#золотой цены за уровень.", "Buying a tile refunds 10% of its#gold price, per level.");
