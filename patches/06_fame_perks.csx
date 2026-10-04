@@ -278,10 +278,10 @@ string heirloom =
     "{\n" +
     "    var _hk = 0.08 * global.fs_lv[25];\n" +
     "    ini_open(\"game1\");\n" +
-    "    ini_write_string(\"RES\", \"zern\", string(ini_read_real(\"RES\", \"zern\", 100 + (500 * RELIC[3]) + pps_res) + (zern * _hk)));\n" +
-    "    ini_write_string(\"RES\", \"les\", string(ini_read_real(\"RES\", \"les\", (500 * RELIC[2]) + pps_res) + (les * _hk)));\n" +
-    "    ini_write_string(\"RES\", \"kam\", string(ini_read_real(\"RES\", \"kam\", 0 + pps_res) + (kam * _hk)));\n" +
-    "    ini_write_string(\"RES\", \"ver\", string(ini_read_real(\"RES\", \"ver\", 0 + pps_ver) + (ver * _hk)));\n" +
+    "    ini_write_string(\"RES\", \"zern\", string(ini_read_real(\"RES\", \"zern\", 100 + (500 * RELIC[3]) + (pps_res * global.qol_amb)) + (zern * _hk)));\n" +
+    "    ini_write_string(\"RES\", \"les\", string(ini_read_real(\"RES\", \"les\", (500 * RELIC[2]) + (pps_res * global.qol_amb)) + (les * _hk)));\n" +
+    "    ini_write_string(\"RES\", \"kam\", string(ini_read_real(\"RES\", \"kam\", 0 + (pps_res * global.qol_amb)) + (kam * _hk)));\n" +
+    "    ini_write_string(\"RES\", \"ver\", string(ini_read_real(\"RES\", \"ver\", 0 + (pps_ver * global.qol_amb)) + (ver * _hk)));\n" +
     "    ini_close();\n" +
     "}";
 importGroup.QueueFindReplace("gml_Object_main_Alarm_11", "_tri_cave();", heirloom);

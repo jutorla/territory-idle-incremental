@@ -8,7 +8,8 @@
 //   btn[1] Speed button    -> global.qol_spd  (turning it off also resets the speed to 1x)
 //   btn[2] Fast fights     -> global.qol_btl
 //   btn[3] Fame Shop       -> global.qol_fame (hides the button and disables every perk effect)
-//   btn[4] < Back          -> main menu
+//   btn[4] Amber effects   -> global.qol_amb  (turns the lasting effects of the Amber Shop on/off; see 07_amber_effects.csx)
+//   btn[5] < Back          -> main menu
 // Toggles keep the menu open (we exit before the game's alarm[5] closes it) and are saved to the
 // "opt" ini ([QOL] section). Clicking outside the buttons closes the menu as usual.
 
@@ -37,7 +38,7 @@ importGroup.QueueFindReplace(
     var _p = instance_create(x, y, gamemenu);
     with (_p)
     {
-        N = 5;
+        N = 6;
         T = 20;
         NZ = 1;
     }
@@ -47,7 +48,7 @@ importGroup.QueueFindReplace(
 }
 if (T == 20)
 {
-    if (M == 4)
+    if (M == 5)
     {
         var _p = instance_create(x, y, gamemenu);
         with (_p)
@@ -79,11 +80,16 @@ if (T == 20)
     {
         global.qol_fame = !global.qol_fame;
     }
+    if (M == 4)
+    {
+        global.qol_amb = !global.qol_amb;
+    }
     ini_open(""opt"");
     ini_write_real(""QOL"", ""rit"", global.qol_rit);
     ini_write_real(""QOL"", ""spd"", global.qol_spd);
     ini_write_real(""QOL"", ""btl"", global.qol_btl);
     ini_write_real(""QOL"", ""fame"", global.qol_fame);
+    ini_write_real(""QOL"", ""amb"", global.qol_amb);
     ini_close();
     exit;
 }
@@ -122,7 +128,13 @@ if (T == 20)
         _s = _on;
     }
     btn[3] = g(""Магазин славы: "", ""Fame Shop: "") + _s;
-    btn[4] = g(""< Назад"", ""< Back"");
+    _s = _off;
+    if (global.qol_amb)
+    {
+        _s = _on;
+    }
+    btn[4] = g(""Эффекты янтаря: "", ""Amber effects: "") + _s;
+    btn[5] = g(""< Назад"", ""< Back"");
 }");
 
 // 4) Draw GUI: hover tooltips for the page (M is the hovered button, set by the loop above).
@@ -144,6 +156,10 @@ if (T == 20 && M == 2)
 if (T == 20 && M == 3)
 {
     mHelp(g(""Кнопка 'Магазин славы' рядом с магазином янтаря:#каждое очко славы - это очко перка для#постоянных улучшений. При выключении кнопка скрыта,#а все перки не действуют (покупки сохраняются)."", ""'Fame Shop' button next to the Amber Shop:#every Fame point is also a perk point for#permanent upgrades. Turning it off hides the button#and disables all perks (your purchases are kept).""));
+}
+if (T == 20 && M == 4)
+{
+    mHelp(g(""Включает или выключает постоянные эффекты магазина янтаря:#постоянные бонусы к производству, стартовые ресурсы и вера,#99 рабочих при постройке и усиления на один бой.#Янтарь и покупки не теряются. Разовые товары#(промотка, золото, наследие) не затрагиваются."", ""Turns the lasting effects of the Amber Shop on or off:#permanent production bonuses, starting resources and faith,#99 workers on construction and the one-battle boosts.#Your Amber and purchases are never lost. One-off items#(timelapse, gold, heritage) are not affected.""));
 }
 mouse_norm();");
 

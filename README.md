@@ -1,5 +1,9 @@
 # Territory Idle – QoL mod changelog
 
+## 1.4.0 – 2026-10-04
+
+- **Amber effects switch** in *Options → QoL Features...*: turns the **lasting effects of the Amber Shop** on or off. When OFF, these stop applying: the permanent production bonuses, the starting resources and faith, the 99 workers on construction, and the one-battle boosts (1.5x battle speed, double hero stats). Your Amber and purchases are never changed or lost, and switching ON brings the effects back. One-off items (timelapse, gold, heritage) are not affected.
+
 ## 1.3.1 – 2026-10-04
 
 - **Spoils of War** now gives **Fame instead of gold**: 0.2 Fame per level (0.2 / 0.4 / 0.6 / 0.8 / 1.0) for every tile you conquer in battle, which is also that many perk points. The gold payout was too strong.
