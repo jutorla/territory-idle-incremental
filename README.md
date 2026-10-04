@@ -1,5 +1,15 @@
 # Territory Idle – QoL mod changelog
 
+## 1.2.0 – 2026-10-04
+
+- **Bigger Fame Shop:** the skill tree now has **28 perks in 4 branches** (new branch: **Devotion**), up from 12 in 3. Each branch is a 7-perk tree with two forks and a capstone that needs both sides.
+- **Much stronger perks** (about 2–3x per level), with new kinds of upgrades:
+  - **Prosperity:** separate wheat, wood and stone boosts, gold income, and the *Golden Age* capstone (+12% to all production per level).
+  - **Industry:** hire several workers at once, slower worker-cost growth (*Economies of Scale*), +1000 starting resources or faith per level.
+  - **Valor:** hero damage, damage reduction, attack speed, dodge, and the *Warlord's Banner* capstone.
+  - **Devotion:** holiness, ritual power and automation, and *Apotheosis* (+20% production per level while a ritual is running).
+- Perks bought in 1.1.0 are refunded because the tree changed. Your Fame is untouched.
+
 ## 1.1.0 – 2026-10-04
 
 - **Fame Shop:** a new button next to the Amber Shop. Every Fame point you earn (by sailing away to a new continent) is also a perk point, to spend on a skill tree of 12 permanent upgrades, 5 levels each, that make the game less grindy:

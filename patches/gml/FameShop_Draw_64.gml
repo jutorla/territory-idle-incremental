@@ -23,35 +23,43 @@ draw_set_font(font0);
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 draw_set_color(uU);
-draw_text(cX, y1 + 10, g("Магазин славы", "Fame Shop"));
+draw_text(cX, y1 + 8, g("Магазин славы", "Fame Shop"));
 draw_set_font(font1);
 draw_set_color(c_white);
-draw_text(cX, y1 + 38, g("Очки перков: ", "Perk points: ") + string(av) + " / " + string(tot) + "#" + g("1 слава = 1 очко перка. Улучшения постоянны.", "1 Fame = 1 perk point. Upgrades are permanent."));
+draw_text(cX, y1 + 34, g("Очки перков: ", "Perk points: ") + string(av) + " / " + string(tot) + "#" + g("1 слава = 1 очко перка. Улучшения постоянны.", "1 Fame = 1 perk point. Upgrades are permanent."));
 if (tot < 1)
 {
     draw_set_color(c_yellow);
-    draw_text(cX, y1 + 78, g("Получите славу, уплыв на новый континент.", "Earn Fame by sailing away to a new continent."));
+    draw_text(cX, y1 + 70, g("Получите славу, уплыв на новый континент.", "Earn Fame by sailing away to a new continent."));
 }
 draw_set_font(font0);
-for (var b = 0; b < 3; b++)
+for (var b = 0; b < 4; b++)
 {
     draw_set_color(bcol[b]);
-    draw_text(x1 + (((x2 - x1) / 3) * (b + 0.5)), y1 + 110, bnm[b]);
+    draw_text(x1 + (((x2 - x1) / 4) * (b + 0.5)), y1 + 92, bnm[b]);
 }
 draw_set_font(font1);
 
-// links between perks
+// links between perks (a capstone has two)
 for (var i = 0; i < NN; i++)
 {
-    if (req[i] >= 0)
+    for (var q = 0; q < 2; q++)
     {
-        var lc = merge_color(c_black, bcol[brn[i]], 0.25);
-        if (global.fs_lv[req[i]] > 0)
+        var pr = req[i];
+        if (q == 1)
         {
-            lc = bcol[brn[i]];
+            pr = req2[i];
         }
-        draw_set_color(lc);
-        draw_line_width(px[req[i]], py[req[i]], px[i], py[i], 4);
+        if (pr >= 0)
+        {
+            var lc = merge_color(c_black, bcol[brn[i]], 0.25);
+            if (global.fs_lv[pr] > 0)
+            {
+                lc = bcol[brn[i]];
+            }
+            draw_set_color(lc);
+            draw_line_width(px[pr], py[pr], px[i], py[i], 3);
+        }
     }
 }
 
@@ -60,6 +68,7 @@ hov = -1;
 for (var i = 0; i < NN; i++)
 {
     var lv = global.fs_lv[i];
+    var mxl = global.fs_mx[i];
     var opn = 1;
     if (req[i] >= 0)
     {
@@ -68,8 +77,15 @@ for (var i = 0; i < NN; i++)
             opn = 0;
         }
     }
+    if (req2[i] >= 0)
+    {
+        if (global.fs_lv[req2[i]] < 1)
+        {
+            opn = 0;
+        }
+    }
     var cc = bcol[brn[i]];
-    var hv = point_in_circle(mouse.x, mouse.y, px[i], py[i], 32);
+    var hv = point_in_circle(mouse.x, mouse.y, px[i], py[i], 27);
     if (instance_exists(Message))
     {
         hv = 0;
@@ -83,7 +99,7 @@ for (var i = 0; i < NN; i++)
         edge = c_dkgray;
         tcol = c_gray;
     }
-    else if (lv >= RM)
+    else if (lv >= mxl)
     {
         body = merge_color(c_black, cc, 0.8);
         edge = c_white;
@@ -93,34 +109,34 @@ for (var i = 0; i < NN; i++)
         body = merge_color(c_black, cc, 0.5);
     }
     draw_set_color(body);
-    draw_circle(px[i], py[i], 32, false);
+    draw_circle(px[i], py[i], 27, false);
     if (hv)
     {
         edge = c_yellow;
     }
     draw_set_color(edge);
-    draw_circle(px[i], py[i], 32, true);
-    draw_circle(px[i], py[i], 31, true);
+    draw_circle(px[i], py[i], 27, true);
+    draw_circle(px[i], py[i], 26, true);
     draw_set_color(c_white);
     if (!opn)
     {
         draw_set_color(c_gray);
     }
     draw_set_valign(fa_middle);
-    draw_text(px[i], py[i], string(lv) + "/" + string(RM));
+    draw_text(px[i], py[i], string(lv) + "/" + string(mxl));
     draw_set_valign(fa_top);
     draw_set_color(tcol);
     if (opn)
     {
         draw_set_color(cc);
     }
-    draw_text(px[i], py[i] + 38, nm[i]);
+    draw_text_ext(px[i], py[i] + 31, nm[i], 13, 112);
     if (hv)
     {
         hov = i;
-        var t = nm[i] + "#" + g("Уровень ", "Level ") + string(lv) + "/" + string(RM) + "#" + ds[i] + "##";
+        var t = nm[i] + "#" + g("Уровень ", "Level ") + string(lv) + "/" + string(mxl) + "#" + ds[i] + "##";
         t += g("Сейчас: ", "Now: ") + sg[i] + string(vv[i] * lv) + sx[i];
-        if (lv < RM)
+        if (lv < mxl)
         {
             t += "  ->  " + sg[i] + string(vv[i] * (lv + 1)) + sx[i] + "#" + g("Стоимость: ", "Cost: ") + string(global.fs_bs[i] * (lv + 1)) + g(" очк. перков", " perk points");
         }
@@ -130,7 +146,26 @@ for (var i = 0; i < NN; i++)
         }
         if (!opn)
         {
-            t += "#" + g("Нужно: ", "Requires: ") + nm[req[i]] + g(" (ур. 1)", " (level 1)");
+            var rq = "";
+            if (req[i] >= 0)
+            {
+                if (global.fs_lv[req[i]] < 1)
+                {
+                    rq += nm[req[i]];
+                }
+            }
+            if (req2[i] >= 0)
+            {
+                if (global.fs_lv[req2[i]] < 1)
+                {
+                    if (rq != "")
+                    {
+                        rq += ", ";
+                    }
+                    rq += nm[req2[i]];
+                }
+            }
+            t += "#" + g("Нужно: ", "Requires: ") + rq + g(" (ур. 1)", " (level 1)");
         }
         mHelp(t);
     }
@@ -141,12 +176,12 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_set_font(font1);
 draw_set_color(merge_color(c_white, c_black, 0.4));
-draw_text(x1 + 20, y2 - 72, g("Улучшения сохраняются при отречении и при переезде на новый континент.", "Upgrades are kept through abdications and new continents."));
-bc = DrawBtnRel(x2 - 100, y2 - 40, g("Закрыть", "Close"), 0, uU);
+draw_text(x1 + 20, y2 - 62, g("Улучшения сохраняются при отречении и при переезде на новый континент.", "Upgrades are kept through abdications and new continents."));
+bc = DrawBtnRel(x2 - 100, y2 - 36, g("Закрыть", "Close"), 0, uU);
 var rt = g("Сбросить перки (бесплатно)", "Reset perks (free)");
 if (current_time < rcf)
 {
     rt = g("Нажмите ещё раз для подтверждения", "Click again to confirm");
 }
-brs = DrawBtnRel(x1 + 20, y2 - 40, rt, 0, uU);
+brs = DrawBtnRel(x1 + 20, y2 - 36, rt, 0, uU);
 mouse_norm();
