@@ -8,7 +8,7 @@ if (global.qol_fame && !modal())
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
     var _fspent = 0;
-    for (var _fi = 0; _fi < 28; _fi++)
+    for (var _fi = 0; _fi < 32; _fi++)
     {
         _fspent += global.fs_bs[_fi] * ((global.fs_lv[_fi] * (global.fs_lv[_fi] + 1)) / 2);
     }

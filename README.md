@@ -1,5 +1,17 @@
 # Territory Idle – QoL mod changelog
 
+## 1.3.0 – 2026-10-04
+
+- **Fame Shop rebuilt: 32 perks in 4 branches** (Industry, Conquest, Devotion, Legacy). Each branch is a "diamond": a root, two paths and a **keystone** that needs both paths. Most perks are now mechanics, and several grow with your progress (tiles, Fame, continents, rituals, ships, workers).
+- **Four keystones:**
+  - **Foremen:** 1% per level of your wheat, wood, stone and faith income is added to your gold.
+  - **Cleave:** each monster kill counts as up to 3 kills toward capturing the tile.
+  - **Timeless Rites:** rituals stop getting more expensive with every cast.
+  - **Legend of Fame:** each Fame point gives more gold when you abdicate.
+- **Other new perks:** hire several workers at once, slower worker-cost growth, cheaper tile-price growth, tile refunds and conquest payouts, plunder from kills, restore your buildings after abdication, keep part of your stock when abdicating, fewer ships needed to sail, more Fame when sailing, cheaper religion perks.
+- No automation perks, and nothing that duplicates an Amber Shop item. The Amber Shop itself is untouched.
+- Perks bought in 1.2 are refunded because the tree changed. Your Fame is untouched.
+
 ## 1.2.0 – 2026-10-04
 
 - **Bigger Fame Shop:** the skill tree now has **28 perks in 4 branches** (new branch: **Devotion**), up from 12 in 3. Each branch is a 7-perk tree with two forks and a capstone that needs both sides.

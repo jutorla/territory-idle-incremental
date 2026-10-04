@@ -40,7 +40,7 @@ for (var b = 0; b < 4; b++)
 }
 draw_set_font(font1);
 
-// links between perks (a capstone has two)
+// links between perks (a keystone has two)
 for (var i = 0; i < NN; i++)
 {
     for (var q = 0; q < 2; q++)
@@ -69,6 +69,7 @@ for (var i = 0; i < NN; i++)
 {
     var lv = global.fs_lv[i];
     var mxl = global.fs_mx[i];
+    var rr = rdi[i];
     var opn = 1;
     if (req[i] >= 0)
     {
@@ -85,7 +86,7 @@ for (var i = 0; i < NN; i++)
         }
     }
     var cc = bcol[brn[i]];
-    var hv = point_in_circle(mouse.x, mouse.y, px[i], py[i], 27);
+    var hv = point_in_circle(mouse.x, mouse.y, px[i], py[i], rr);
     if (instance_exists(Message))
     {
         hv = 0;
@@ -108,15 +109,27 @@ for (var i = 0; i < NN; i++)
     {
         body = merge_color(c_black, cc, 0.5);
     }
+    // keystones get a gold outer ring
+    if (slt[i] == 7)
+    {
+        var gc = c_dkgray;
+        if (opn)
+        {
+            gc = merge_color(c_yellow, c_orange, 0.4);
+        }
+        draw_set_color(gc);
+        draw_circle(px[i], py[i], rr + 5, true);
+        draw_circle(px[i], py[i], rr + 4, true);
+    }
     draw_set_color(body);
-    draw_circle(px[i], py[i], 27, false);
+    draw_circle(px[i], py[i], rr, false);
     if (hv)
     {
         edge = c_yellow;
     }
     draw_set_color(edge);
-    draw_circle(px[i], py[i], 27, true);
-    draw_circle(px[i], py[i], 26, true);
+    draw_circle(px[i], py[i], rr, true);
+    draw_circle(px[i], py[i], rr - 1, true);
     draw_set_color(c_white);
     if (!opn)
     {
@@ -130,19 +143,63 @@ for (var i = 0; i < NN; i++)
     {
         draw_set_color(cc);
     }
-    draw_text_ext(px[i], py[i] + 31, nm[i], 13, 112);
+    draw_text_ext(px[i], py[i] + rr + 4, nm[i], 13, 112);
     if (hv)
     {
         hov = i;
         var t = nm[i] + "#" + g("Уровень ", "Level ") + string(lv) + "/" + string(mxl) + "#" + ds[i] + "##";
-        t += g("Сейчас: ", "Now: ") + sg[i] + string(vv[i] * lv) + sx[i];
+        var nw = sg[i] + string(vv[i] * lv) + sx[i];
+        var nx = sg[i] + string(vv[i] * (lv + 1)) + sx[i];
+        if (i == 26)
+        {
+            nw = g("не открыто", "locked");
+            if (lv > 0)
+            {
+                nw = kstr(bpc[lv]) + g(" золота", " gold");
+            }
+            if (lv < mxl)
+            {
+                nx = kstr(bpc[lv + 1]) + g(" золота", " gold");
+            }
+        }
+        t += g("Сейчас: ", "Now: ") + nw;
         if (lv < mxl)
         {
-            t += "  ->  " + sg[i] + string(vv[i] * (lv + 1)) + sx[i] + "#" + g("Стоимость: ", "Cost: ") + string(global.fs_bs[i] * (lv + 1)) + g(" очк. перков", " perk points");
+            t += "  ->  " + nx + "#" + g("Стоимость: ", "Cost: ") + string(global.fs_bs[i] * (lv + 1)) + g(" очк. перков", " perk points");
         }
         else
         {
             t += "#" + g("Максимальный уровень", "Max level");
+        }
+        // live value for the perks that scale with your progress
+        var lt = "";
+        if (i == 5)
+        {
+            lt = "+" + string(floor(0.4 * lv * main.tile_num * 10) / 10) + g("% к производству", "% total production");
+        }
+        if (i == 6)
+        {
+            lt = "+" + string(floor(0.8 * lv * sqrt(main.empire_ppp) * 10) / 10) + g("% к производству", "% total production");
+        }
+        if (i == 22)
+        {
+            lt = "+" + string(floor(0.1 * lv * min(main.o_cnt, 200) * 10) / 10) + g("% к производству", "% total production");
+        }
+        if (i == 27)
+        {
+            lt = "+" + string(3 * lv * main.CONT) + g("% к производству", "% total production");
+        }
+        if (i == 30)
+        {
+            lt = "+" + string(floor(0.01 * lv * Var.rcnt[8] * 10) / 10) + g("% к производству", "% total production");
+        }
+        if (i == 7)
+        {
+            lt = "+" + kstr(0.01 * lv * (main.d_zern + main.d_les + main.d_kam + main.d_ver)) + g(" золота в секунду", " gold per second");
+        }
+        if (lt != "")
+        {
+            t += "#" + g("Прямо сейчас: ", "Right now: ") + lt;
         }
         if (!opn)
         {
@@ -176,7 +233,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_set_font(font1);
 draw_set_color(merge_color(c_white, c_black, 0.4));
-draw_text(x1 + 20, y2 - 62, g("Улучшения сохраняются при отречении и при переезде на новый континент.", "Upgrades are kept through abdications and new continents."));
+draw_text(x1 + 20, y2 - 62, g("Улучшения сохраняются при отречении и при переезде на новый континент. Перки с золотым кольцом - ключевые.", "Upgrades are kept through abdications and new continents. Perks with a gold ring are keystones."));
 bc = DrawBtnRel(x2 - 100, y2 - 36, g("Закрыть", "Close"), 0, uU);
 var rt = g("Сбросить перки (бесплатно)", "Reset perks (free)");
 if (current_time < rcf)

@@ -1,6 +1,6 @@
 // Fame Shop window - Mouse (global left pressed).
 // bc / brs / hov are set by the Draw GUI event of the previous frame, like the game's other windows.
-// Levels are saved in the "never" ini, section [FAME2] (keys q0..q27).
+// Levels are saved in the "never" ini, section [FAME3] (keys q0..q31).
 if (bc)
 {
     instance_destroy();
@@ -17,7 +17,7 @@ if (brs)
         ini_open("never");
         for (var j = 0; j < NN; j++)
         {
-            ini_write_real("FAME2", "q" + string(j), global.fs_lv[j]);
+            ini_write_real("FAME3", "q" + string(j), global.fs_lv[j]);
         }
         ini_close();
         rcf = 0;
@@ -54,7 +54,7 @@ if (hov >= 0)
         ini_open("never");
         for (var j = 0; j < NN; j++)
         {
-            ini_write_real("FAME2", "q" + string(j), global.fs_lv[j]);
+            ini_write_real("FAME3", "q" + string(j), global.fs_lv[j]);
         }
         ini_close();
     }
