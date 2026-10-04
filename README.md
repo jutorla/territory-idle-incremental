@@ -1,5 +1,14 @@
 # Territory Idle – QoL mod changelog
 
+## 1.1.0 – 2026-10-04
+
+- **Fame Shop:** a new button next to the Amber Shop. Every Fame point you earn (by sailing away to a new continent) is also a perk point, to spend on a skill tree of 12 permanent upgrades, 5 levels each, that make the game less grindy:
+  - **Prosperity:** more wheat/wood/stone, more faith, more gold when abdicating, cheaper tiles.
+  - **Industry:** faster and cheaper worker hiring, bigger starting resources and faith in every new game.
+  - **Valor:** fewer monsters per tile battle, more hero experience, longer and cheaper rituals.
+  Perks are kept through abdications and new continents, and can be reset for free. A badge on the button shows your unspent points.
+- The QoL Features page has a new **Fame Shop** switch (OFF hides the button and disables every perk; your purchases are kept).
+
 ## 1.0.0 – 2026-10-03
 
 The game is now more **incremental than idle**: you decide the pace instead of waiting for timers.

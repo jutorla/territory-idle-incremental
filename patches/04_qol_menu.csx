@@ -1,4 +1,4 @@
-// Options menu: "QoL Features..." page with ON/OFF toggles for the three QoL mods.
+// Options menu: "QoL Features..." page with ON/OFF toggles for the QoL mods.
 //
 // The in-game menu (gamemenu) is a list of buttons btn[0..N-1]; the page is identified by T
 // (0 = main, 1 = reset, 2 = save/load to PC, 10 = window size). Sub-pages are made by spawning a
@@ -7,7 +7,8 @@
 //   btn[0] Ritual finish   -> global.qol_rit
 //   btn[1] Speed button    -> global.qol_spd  (turning it off also resets the speed to 1x)
 //   btn[2] Fast fights     -> global.qol_btl
-//   btn[3] < Back          -> main menu
+//   btn[3] Fame Shop       -> global.qol_fame (hides the button and disables every perk effect)
+//   btn[4] < Back          -> main menu
 // Toggles keep the menu open (we exit before the game's alarm[5] closes it) and are saved to the
 // "opt" ini ([QOL] section). Clicking outside the buttons closes the menu as usual.
 
@@ -36,7 +37,7 @@ importGroup.QueueFindReplace(
     var _p = instance_create(x, y, gamemenu);
     with (_p)
     {
-        N = 4;
+        N = 5;
         T = 20;
         NZ = 1;
     }
@@ -46,7 +47,7 @@ importGroup.QueueFindReplace(
 }
 if (T == 20)
 {
-    if (M == 3)
+    if (M == 4)
     {
         var _p = instance_create(x, y, gamemenu);
         with (_p)
@@ -74,10 +75,15 @@ if (T == 20)
     {
         global.qol_btl = !global.qol_btl;
     }
+    if (M == 3)
+    {
+        global.qol_fame = !global.qol_fame;
+    }
     ini_open(""opt"");
     ini_write_real(""QOL"", ""rit"", global.qol_rit);
     ini_write_real(""QOL"", ""spd"", global.qol_spd);
     ini_write_real(""QOL"", ""btl"", global.qol_btl);
+    ini_write_real(""QOL"", ""fame"", global.qol_fame);
     ini_close();
     exit;
 }
@@ -110,7 +116,13 @@ if (T == 20)
         _s = _on;
     }
     btn[2] = g(""Быстрые бои: "", ""Fast fights: "") + _s;
-    btn[3] = g(""< Назад"", ""< Back"");
+    _s = _off;
+    if (global.qol_fame)
+    {
+        _s = _on;
+    }
+    btn[3] = g(""Магазин славы: "", ""Fame Shop: "") + _s;
+    btn[4] = g(""< Назад"", ""< Back"");
 }");
 
 // 4) Draw GUI: hover tooltips for the page (M is the hovered button, set by the loop above).
@@ -128,6 +140,10 @@ if (T == 20 && M == 1)
 if (T == 20 && M == 2)
 {
     mHelp(g(""Если удар героя убивает следующего монстра,#бой продолжается сразу: до 100 убийств за раз#вместо одного за такт."", ""When the hero's hit kills the next monster, the fight#continues right away: up to 100 kills at once#instead of one per tick.""));
+}
+if (T == 20 && M == 3)
+{
+    mHelp(g(""Кнопка 'Магазин славы' рядом с магазином янтаря:#каждое очко славы - это очко перка для#постоянных улучшений. При выключении кнопка скрыта,#а все перки не действуют (покупки сохраняются)."", ""'Fame Shop' button next to the Amber Shop:#every Fame point is also a perk point for#permanent upgrades. Turning it off hides the button#and disables all perks (your purchases are kept).""));
 }
 mouse_norm();");
 
