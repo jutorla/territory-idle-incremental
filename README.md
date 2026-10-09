@@ -1,52 +1,66 @@
-# Territory Idle – QoL mod changelog
+# Territory Idle – QoL mod
 
-## 1.4.0 – 2026-10-04
+An unofficial mod for **Territory Idle** (game version 167) that makes the game more *incremental* than idle and adds a lot of content: buildings, heroes, gods, relics, empires and a perk tree. Everything can be switched on or off in *Options (gear icon) → QoL Features...*, and your settings are remembered.
 
-- **Amber effects switch** in *Options → QoL Features...*: turns the **lasting effects of the Amber Shop** on or off. When OFF, these stop applying: the permanent production bonuses, the starting resources and faith, the 99 workers on construction, and the one-battle boosts (1.5x battle speed, double hero stats). Your Amber and purchases are never changed or lost, and switching ON brings the effects back. One-off items (timelapse, gold, heritage) are not affected.
+## Quick summary
 
-## 1.3.1 – 2026-10-04
-
-- **Spoils of War** now gives **Fame instead of gold**: 0.2 Fame per level (0.2 / 0.4 / 0.6 / 0.8 / 1.0) for every tile you conquer in battle, which is also that many perk points. The gold payout was too strong.
-
-## 1.3.0 – 2026-10-04
-
-- **Fame Shop rebuilt: 32 perks in 4 branches** (Industry, Conquest, Devotion, Legacy). Each branch is a "diamond": a root, two paths and a **keystone** that needs both paths. Most perks are now mechanics, and several grow with your progress (tiles, Fame, continents, rituals, ships, workers).
-- **Four keystones:**
-  - **Foremen:** 1% per level of your wheat, wood, stone and faith income is added to your gold.
-  - **Cleave:** each monster kill counts as up to 3 kills toward capturing the tile.
-  - **Timeless Rites:** rituals stop getting more expensive with every cast.
-  - **Legend of Fame:** each Fame point gives more gold when you abdicate.
-- **Other new perks:** hire several workers at once, slower worker-cost growth, cheaper tile-price growth, tile refunds and conquest payouts, plunder from kills, restore your buildings after abdication, keep part of your stock when abdicating, fewer ships needed to sail, more Fame when sailing, cheaper religion perks.
-- No automation perks, and nothing that duplicates an Amber Shop item. The Amber Shop itself is untouched.
-- Perks bought in 1.2 are refunded because the tree changed. Your Fame is untouched.
-
-## 1.2.0 – 2026-10-04
-
-- **Bigger Fame Shop:** the skill tree now has **28 perks in 4 branches** (new branch: **Devotion**), up from 12 in 3. Each branch is a 7-perk tree with two forks and a capstone that needs both sides.
-- **Much stronger perks** (about 2–3x per level), with new kinds of upgrades:
-  - **Prosperity:** separate wheat, wood and stone boosts, gold income, and the *Golden Age* capstone (+12% to all production per level).
-  - **Industry:** hire several workers at once, slower worker-cost growth (*Economies of Scale*), +1000 starting resources or faith per level.
-  - **Valor:** hero damage, damage reduction, attack speed, dodge, and the *Warlord's Banner* capstone.
-  - **Devotion:** holiness, ritual power and automation, and *Apotheosis* (+20% production per level while a ritual is running).
-- Perks bought in 1.1.0 are refunded because the tree changed. Your Fame is untouched.
-
-## 1.1.0 – 2026-10-04
-
-- **Fame Shop:** a new button next to the Amber Shop. Every Fame point you earn (by sailing away to a new continent) is also a perk point, to spend on a skill tree of 12 permanent upgrades, 5 levels each, that make the game less grindy:
-  - **Prosperity:** more wheat/wood/stone, more faith, more gold when abdicating, cheaper tiles.
-  - **Industry:** faster and cheaper worker hiring, bigger starting resources and faith in every new game.
-  - **Valor:** fewer monsters per tile battle, more hero experience, longer and cheaper rituals.
-  Perks are kept through abdications and new continents, and can be reset for free. A badge on the button shows your unspent points.
-- The QoL Features page has a new **Fame Shop** switch (OFF hides the button and disables every perk; your purchases are kept).
-
-## 1.0.0 – 2026-10-03
-
-The game is now more **incremental than idle**: you decide the pace instead of waiting for timers.
-
+### Pace and quality of life
 - **Instant ritual finish:** click the Ritual button while a ritual is running to finish it right away and get everything it would have produced.
-- **Game speed button:** a new button in the left column cycles the game speed 1x → 2x → 5x → 10x → 20x (right click goes back). The real speed depends on your PC.
-- **Fast fights:** when the hero's hit kills the next monster, the fight continues immediately, up to 100 kills at once.
-- **QoL Features options page:** every change above can be switched on/off in *Options (gear icon) → QoL Features...*. Settings are remembered.
+- **Game speed button:** cycles the speed 1x → 2x → 5x → 10x → 20x (right click goes back).
+- **Fast fights:** when the hero's hit kills the next monster, the fight continues at once, up to 100 kills at a time.
+- **5-tile Empire points** (OFF by default): Empire points for every 5 tiles instead of 15, recounted at once. Switch it OFF before you uninstall the mod.
+- **Amber upgrades, one by one:** a switch for each lasting Amber Shop item (+25% wheat, wood, stone and faith, starting resources and faith, 99 workers on construction, 1.5x battle speed, double hero stats) and an *All upgrades* button. Your Amber and purchases are never changed.
+
+### Fame Shop (switch *Fame Shop*)
+- A new button next to the Amber Shop. Every Fame point you earn by sailing away is also a perk point.
+- **32 perks in 4 branches** (Industry, Conquest, Devotion, Legacy). Each branch has a root, two paths and a **keystone** that needs both: *Foremen*, *Cleave*, *Timeless Rites* and *Legend of Fame*.
+- Perks are kept through abdications and new continents and can be reset for free. *Spoils of War* gives Fame for every tile you conquer.
+
+### Extra buildings (switch *Extra buildings*)
+- **16 new buildings.** On an empty tile, press **More >** in the Build, Bld. Stone and Bld. Heroic menus, or open **Bld. Marine** on a coastal tile. Bonuses count over all your tiles of that type and have **no limit**; reductions never reach zero (every 100 workers halve the amount).
+
+  | Menu | Building | Effect |
+  |---|---|---|
+  | Build | Windmill | +2% wheat on all wheat fields per miller |
+  | Build | Market | +1 gold per second per 10 merchants (also raises the abdication payout) |
+  | Build | Sawmill | +2% wood on all forest camps per sawyer |
+  | Build | Tavern | +2% hero experience per barkeeper |
+  | Stone | Monolith | +0.5% to all production per keeper |
+  | Stone | Library | +2% hiring speed in every building per scribe |
+  | Stone | Observatory | +1 second ritual duration per astronomer |
+  | Stone | Bank | +1% gold for abdication per banker |
+  | Heroic | Arena | the academy hero gains experience every second, per gladiator |
+  | Heroic | Watchtower | every 100 watchmen halve the monsters needed per tile |
+  | Heroic | Barracks | +0.5% hero HP per recruit |
+  | Marine | Harbor | +1% to everything your ships produce per docker |
+  | Marine | Fishery | +1% wheat production per fisherman |
+  | Marine | Lighthouse | +2% fame per keeper when you sail away |
+  | Marine (page 2) | Sail Loft | every 100 sailmakers halve the ship price |
+  | Marine (page 2) | Naval Academy | +0.5% hero HP and damage per marine |
+
+- **4 special buildings** (**Bld. Special**, the fifth button of an empty tile). Each has **requirements** to build (shown in the tooltip with [OK] / [X]), you can have **only one**, and the bonus works only while the requirements hold. They give a flat **x2** and more for every worker:
+
+  | Building | Requirements | Bonus |
+  |---|---|---|
+  | Hermitage | no Temples and no Cathedrals | x2 wheat, wood and stone production |
+  | Imperial Mint | no Academies, at least 20 tiles | x2 gold per second and gold for abdication |
+  | Citadel | an Academy, a Training hall and a Forge | x2 hero HP and damage |
+  | Grand Sanctum | a Temple, a Cathedral and 30 monks | x2 faith production, rituals last 60 s longer |
+
+- The new buildings have the **Spd**, **Clear** and **stop autohire** controls like the game's own, and they get no free starting workers from the Empire perk or the mutation.
+- Switching the option OFF hides the buttons and pauses the bonuses; buildings you already built stay. **Before you uninstall the mod, clear these buildings** (or abdicate): the unmodified game cannot load a save that contains them.
+
+### Hero extras (switch *Hero extras*)
+- **7 new classes:** Knight, Ranger, Cleric, Duelist, Warlock, Martyr and Scholar. Each unlocks by reaching a level with another class, and unlocked classes stay unlocked when you sail away.
+- **Class tooltip:** hover the hero to read its class and what it does.
+- **20 new weapons, 5 new shields (two of them off-hand daggers) and 8 new helmets**, which unlock with the hero's level and show their effect in the tooltip. Weapons can be upgraded in the Forge. The game had no icons left for some of them, so they come with new pixel-art icons.
+
+### Divine extras (switch *Divine extras*)
+- **5 new religion gods** (Merchant, Sun, Storm, Night goddess, World turtle), each with its own art, 3 perks, a ritual that multiplies its holiness and a personal relic.
+- **3 new servants** (Oracle, Treasurer, Architect) with 2 perks each. The servant screen has two rows now.
+- **12 new pantheon gods**, **3 new relics** (Abundance, Fortune, Valor), **3 new mutations** (Giant heart, Gilded blood, Chimera) and **3 new ritual types** (gold, faith, wisdom).
+- **6 new Empire rows** in a second tab (*Empires II*): Mongolian, Persian, Babylonian, Mayan, Viking and Indian. They are open from the start.
+- Switching the option OFF hides all of this and pauses its effects; what you chose stays chosen.
 
 ## Install
 
